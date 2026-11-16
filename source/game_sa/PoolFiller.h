@@ -60,3 +60,5 @@ private:
     static inline int32  m_nQuadIdx     = -1;
     static inline uint16 m_aVertIdx[4]  = { 0, 0, 0, 0 };
 };
+
+// Built via GitHub Actions (windows-2025-vs2026) on the Usmansaeed01 fork.
