@@ -63,6 +63,13 @@ void CPoolFiller::Init() {
     if (quadIdx >= 301) {
         return; // water quad array full
     }
+    // The quad needs 4 NEW vertices (our pool corners are unique, so none
+    // are reused). If the 1021-vertex array is already nearly full, adding
+    // them would write past the end of m_aVertices and corrupt memory
+    // (freeze/crash). Skip the pool in that case - the game stays playable.
+    if ((int32)CWaterLevel::NumWaterVertices + 4 > 1021) {
+        return; // water vertex array nearly full - no room for the pool quad
+    }
     const CRenPar rp{ POOL_START_Z, 0.0f, 0.0f, 0, 0 };
     CWaterLevel::AddWaterLevelQuad(
         POOL_MIN_X, POOL_MIN_Y, rp,
