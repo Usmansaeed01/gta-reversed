@@ -2,6 +2,7 @@
 
 #include "WaterCannons.h"
 #include "WaterCannon.h"
+#include "PoolFiller.h"
 
 void CWaterCannons::InjectHooks() {
     RH_ScopedClass(CWaterCannons);
@@ -54,6 +55,8 @@ void CWaterCannons::Update() {
         }
         ++index;
     }
+
+    CPoolFiller::Update();
 }
 
 // 0x729B30
